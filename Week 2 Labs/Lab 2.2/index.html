@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="description" content="Data Visualisation Exercise 2" />
+	<meta name="keywords" content="HTML, CSS" />
+	<meta name="author" content="Sam" />
+
+	<title>Task 2.2 D3 and Data Binding</title>
+	<link rel="stylesheet" href="./index.css">
+    <script src="https://d3js.org/d3.v7.js"></script>
+</head>
+
+<body>
+    <script>
+        var w = 500;
+        var h = 100;
+        var padding = 1
+
+        
+        var svg = d3.select("body")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h);
+
+        var dataset = [30,5,26,23,9]
+
+        svg.selectAll()
+            .data(dataset)
+            .enter()
+            .append("rect")
+            .attr("x", function(d, i){
+                return i * (w / dataset.length);
+            })
+            .attr("y", function(d){
+                return h-d
+            })
+            .attr("width", function(){
+                return w/dataset.length - padding
+            })
+            .attr("height", function(d){
+                return d
+            })
+            .attr("fill", function(d,i){
+                // return "color:rgb("+0+0+i+")"
+                return `hsl(0,100%,${d}%)`
+            })
+    </script>
+    <br>
+	<!-- <footer style="color: gray;">COS30045 Data Visualisation</footer> -->
+	<footer style="color: gray">COS30045 Data Visualisation</footer>
+</body>
+
+</html>
