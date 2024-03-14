@@ -16,7 +16,7 @@
     <script>
 
         var w = 500;
-        var h = 200;
+        var h = 300;
         var padding = 50;
 
         var dataset = [
@@ -29,8 +29,6 @@
             [475, 44],
             [85, 21],
             [220, 88],
-            // [0, 1000],
-            // [1000, 0],
         ]
 
         var xScale = d3.scaleLinear()
@@ -54,8 +52,12 @@
             .attr("width", w)
             .attr("height", h);
 
-        var xAxis = d3.axisBottom()
+        var xAxis = d3.axisTop()
+                            // .ticks(10)
                             .scale(xScale);
+        var yAxis = d3.axisRight()
+                            // .ticks(10)
+                            .scale(yScale);
 
         svg.selectAll()
             .data(dataset)
@@ -74,9 +76,6 @@
                 }
             });
 
-        svg.append("g")
-            .call(xAxis);
-
         svg.selectAll("text")
             .data(dataset)
             .enter()
@@ -89,6 +88,14 @@
             .text(function (d) {
                 return d[0] + ',' + d[1];
             });
+        
+        // Axis must be added to the very bottom of the svg script, otherwise it wont display the text 
+        svg.append("g")
+            .attr("transform", `translate(0,${h-padding+35})`)
+            .call(xAxis);
+        svg.append("g")
+            .attr("transform", `translate(${padding-35}.0)`)
+            .call(yAxis);
     </script>
     <br>
     <footer style="color: gray">COS30045 Data Visualisation</footer>

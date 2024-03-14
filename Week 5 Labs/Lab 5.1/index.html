@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="description" content="Data Visualisation Exercise 2" />
+	<meta name="keywords" content="HTML, CSS" />
+	<meta name="author" content="Sam" />
+
+	<title>Task 5.1</title>
+	<link rel="stylesheet" href="./index.css">
+    <script src="https://d3js.org/d3.v7.js"></script>
+</head>
+
+<body>
+    <button>Update</button>
+    <script>
+        var w = 500;
+        var h = 100;
+        var padding = 1
+
+        
+        var svg = d3.select("body")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h);
+
+        var dataset = [25,5,18,23,9,1,6,12,22,7,13]
+
+        var xScale = d3.scaleBand()
+            .domain(d3.range(dataset.length))
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            .rangeRound([0,w])
+            // 0-1 percentage of the bandwith
+            .paddingInner(0.05); 
+
+        svg.selectAll()
+            .data(dataset)
+            .enter()
+            .append("rect")
+            .attr("x", function(d, i){
+                return i * (w / dataset.length);
+            })
+            .attr("y", function(d){
+                return h-d
+            })
+            .attr("width", xScale.bandwidth())
+            .attr("height", function(d){
+                return d
+            })
+            .attr("fill", function(d,i){
+                // return "color:rgb("+0+0+i+")"
+                return `hsl(0,100%,${d}%)`
+            })
+    </script>
+    <br>
+	<!-- <footer style="color: gray;">COS30045 Data Visualisation</footer> -->
+	<footer style="color: gray">COS30045 Data Visualisation</footer>
+</body>
+
+</html>
