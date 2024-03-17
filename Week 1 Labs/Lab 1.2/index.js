@@ -20,5 +20,4 @@ function OnClick(button) {
     }
 
     document.getElementById(activeButton).style.display = "block";
-
 }

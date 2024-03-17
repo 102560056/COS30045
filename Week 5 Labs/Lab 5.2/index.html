@@ -7,7 +7,7 @@
 	<meta name="keywords" content="HTML, CSS" />
 	<meta name="author" content="Sam" />
 
-	<title>Task 5.1</title>
+	<title>Task 5.2</title>
 	<link rel="stylesheet" href="./index.css">
     <script src="https://d3js.org/d3.v7.js"></script>
 </head>
@@ -17,14 +17,18 @@
         Update Data
     </h1>
     <button>Update Once</button>
+    <button>Transition One</button>
+    <button>Transition Two</button>
     <script>
         var w = 500;
         var h = 100;
         var maxValue = 25;
         var dataset = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
         var padding = 1
+        const buttons = d3.selectAll("button");
+        var activeButton = ''
 
-        
+
         var svg = d3.select("body")
                     .append("svg")
                     .attr("width", w)
@@ -58,8 +62,8 @@
                 return "rgb("+Math.round(d*10)+",0,0)";
             })
 
-        d3.select("button")
-            .on("click", function(){
+        d3.selectAll("button")
+            .on("click", function(button){
                 var datasetLen = dataset.length;
                 dataset = [];
                 for (var i = 0; i < datasetLen; i++) {
@@ -67,6 +71,29 @@
                 }
                 svg.selectAll("rect")
                     .data(dataset)
+                    .transition()
+                    .duration(function(){
+                        if (button.target.innerHTML != "Update Once"){
+                            return 1000;
+                        }
+                        else{
+                            return 0;
+                        }
+                    })
+                    .delay(function(d,i){
+                        if (button.target.innerHTML === "Transition One") {
+                            return 100 * i;
+                        }
+                        if (button.target.innerHTML === "Transition Two"){
+                            return i/dataset.length * 100;
+                        }
+                        else{
+                            return 0;
+                        }
+                    })
+                    // .ease(d3.easeCircleIn)
+                    // .ease(d3.easeCircleOut)
+                    // .ease(d3.easeElasticOut)
                     .attr("x", function(d, i){
                         return i * (w / dataset.length);
                     })
@@ -78,8 +105,8 @@
                         return yScale(d)
                     })
                     .attr("fill", function(d,i){
-                        return `hsl(0,100%,${d}%)`
-                });
+                        return "rgb("+Math.round(d*10)+",0,0)";
+                    });
             });
     </script>
     <br>

@@ -64,6 +64,9 @@
             .enter()
             .append("circle")
             .attr("cx", function (d) {
+                console.log("d",d)
+                console.log("d0",d[0])
+                console.log("res",xScale(d[0]))
                 return xScale(d[0]);
             })
             .attr("cy", function (d) {

@@ -1,0 +1,15 @@
+body{
+    width: 500px;
+}
+
+button{
+    color: white;
+    background-color: red;
+    border-radius: 3px;
+    border-style: none;
+    cursor: pointer;
+    padding: 5px;
+}
+svg{
+    padding: 1%;
+}
