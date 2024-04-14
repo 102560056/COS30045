@@ -34,20 +34,20 @@
         ]
 
         var xScale = d3.scaleLinear()
-                            // domiain is the input size of the canvas to be transdformed.
-                            .domain([
-                                d3.min(dataset, function(d){return d[0];}),
-                                d3.max(dataset, function(d){return d[0];})
-                            ])
-                            // Range is the resulting size of the canvas post transformation
-                            .range([padding,w-padding])
+            // domiain is the input size of the canvas to be transdformed.
+            .domain([
+                d3.min(dataset, function (d) { return d[0]; }),
+                d3.max(dataset, function (d) { return d[0]; })
+            ])
+            // Range is the resulting size of the canvas post transformation
+            .range([padding, w - padding])
 
         var yScale = d3.scaleLinear()
-                            .domain([
-                                d3.min(dataset, function(d){return d[1];}),
-                                d3.max(dataset, function(d){return d[1];})
-                            ])
-                            .range([h-padding,padding])
+            .domain([
+                d3.min(dataset, function (d) { return d[1]; }),
+                d3.max(dataset, function (d) { return d[1]; })
+            ])
+            .range([h - padding, padding])
 
         var svg = d3.select("body")
             .append("svg")
@@ -76,9 +76,9 @@
             .enter()
             .append("text")
             .attr("transform", function (d) {
-                return `translate(${xScale(d[0])},${yScale(d[1])-3})`
+                return `translate(${xScale(d[0])},${yScale(d[1]) - 3})`
             })
-            // .attr("text-anchor", "middle")
+            .attr("text-anchor", "middle")
             .attr("fill", "green")
             .text(function (d) {
                 return d[0] + ',' + d[1];

@@ -1,0 +1,39 @@
+body {
+    width: 500px;
+}
+
+button {
+    color: white;
+    border-radius: 3px;
+    border-style: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+svg {
+    padding: 1%;
+}
+
+.add {
+    background-color: green;
+}
+
+.delete {
+    background-color: red;
+}
+
+.sort {
+    background-color: blue;
+}
+
+.add:hover {
+    background-color: rgb(6, 95, 6);
+}
+
+.delete:hover {
+    background-color: rgb(153, 24, 24);
+}
+
+.sort:hover {
+    background-color: rgb(6, 6, 163);
+}
