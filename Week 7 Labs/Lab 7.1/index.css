@@ -1,0 +1,14 @@
+.line {
+    fill: none;
+    stroke: black;
+    stroke-width: 0.5;
+}
+
+.area {
+    fill: slategray;
+}
+
+.half-label {
+    color: red;
+    fill: red;
+}

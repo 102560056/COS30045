@@ -62,7 +62,6 @@
             .on("mouseover", function (event, d) {
                 d3.select(this)
                     .transition()
-                    .delay(200)
                     .attr("fill", function (d, i) {
                         return "rgb(" + Math.round(d * 10) + ",0,0)";
                     })
@@ -76,14 +75,12 @@
                     .attr("x", xPosition)
                     .attr("y", yPosition)
                     .transition()
-                    .delay(200)
                     .text(d)
                     .attr("fill", "white");
             })
             .on("mouseout", function (event, d) {
                 d3.select(this)
                     .transition()
-                    .delay(800)
                     .attr("fill", "slategrey")
                 svg.select("text")
                     .remove();
@@ -111,7 +108,6 @@
                     .on("mouseover", function (event, d) {
                         d3.select(this)
                             .transition()
-                            .delay(200)
                             .attr("fill", function (d, i) {
                                 return "rgb(" + Math.round(d * 10) + ",0,0)";
                             })
@@ -125,21 +121,18 @@
                             .attr("x", xPosition)
                             .attr("y", yPosition)
                             .transition()
-                            .delay(200)
                             .text(d)
                             .attr("fill", "white");
                     })
                     .on("mouseout", function (event, d) {
                         d3.select(this)
                             .transition()
-                            .delay(800)
                             .attr("fill", "slategrey")
                         svg.select("text")
                             .remove();
                     })
                     .merge(bars)
                     .transition()
-                    .duration(500)
                     // Updating height and positions
                     .attr("x", function (d, i) {
                         return xScale(i);
@@ -165,7 +158,6 @@
                 bars.exit()
                     // Transition first then apply the changes the transition will do
                     .transition()
-                    .duration(500)
                     .attr("height", 0)
                     .attr("y", 100)
                     .remove();
@@ -190,19 +182,7 @@
                     })
                 }
 
-                //Marker for inverting the order
                 isAscending = !isAscending;
-
-                // svg.selectAll("rect")
-                //     .data(dataset)
-                //     .transition()
-                //     .duration(2000)
-                //     .attr("y", function (d) {
-                //         return h - yScale(d);
-                //     })
-                //     .attr("height", function (d) {
-                //         return yScale(d);
-                //     })
             });
 
         var sortBars = function (isAscending) {
@@ -211,7 +191,6 @@
                     return isAscending ? d3.ascending(a, b) : d3.descending(a, b)
                 })
                 .transition()
-                .duration(1000)
                 .attr("x", function (d, i) {
                     return xScale(i);
                 });
